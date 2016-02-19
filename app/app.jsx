@@ -8,14 +8,28 @@ import TravelOrigin from './components/TravelOrigin.jsx';
 class Main extends React.Component {
   constructor(props){
     super(props);
+    // Maintain state (data store) for the entire app; Simple alternative to Redux
     this.state = {
-      activeComponent: 'TravelOrigin'
+      activeComponent: 'TravelOrigin',
+      departureCity: '',
     };
   }
+
   render() {
-    const controllers = {
-      changeView: (componentName) => {
+    // Actions - This actions object contains all of the functionality for
+    // getting and retrieving state data for the app
+    const actions = {
+      setActiveComponent: (componentName) => {
         this.setState({activeComponent: componentName});
+      },
+      getActiveComponent: () => {
+        return this.state.activeComponent;
+      },
+      setDepartureCity: (dc) => {
+        this.setState({departureCity: dc});
+      },
+      getDepartureCity: () => {
+        return this.state.departureCity;
       }
     }
 
@@ -23,24 +37,27 @@ class Main extends React.Component {
     const router = {view: ''};
     switch (this.state.activeComponent) {
       case 'TravelOrigin':
-        router.view = <TravelOrigin controllers={controllers} />;
-        break;
+      router.view = <TravelOrigin actions={actions} />;
+      break;
       case 'TravelDestination':
-        router.view = <TravelDestination controllers={controllers} />;
-        break;
+      router.view = <TravelDestination actions={actions} />;
+      break;
       default:
-        router.view = <TravelOrigin controllers={controllers} />;
+      router.view = <TravelOrigin actions={actions} />;
     }
 
+    // Render the App
     return (
       <div>
-        <div>Hello World!</div>
-        <button onClick={controllers.changeView.bind(this, 'TravelOrigin')}>Home</button>
+        <div>DayDream</div>
+        {/* Below, unless we are on the starting page,
+           we show a "start over" button.  */}
+        {this.state.activeComponent !== 'TravelOrigin' ?
+          (<button onClick={actions.setActiveComponent.bind(this, 'TravelOrigin')}>Start Over</button>) : null}
         {router.view}
       </div>
     )
   }
-}
-
+};
 
 ReactDOM.render(<Main />, document.getElementById('app'));
