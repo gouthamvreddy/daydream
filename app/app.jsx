@@ -2,8 +2,8 @@
 
 import React from 'react';
 import ReactDOM from 'react-dom';
-import TravelDestination from './components/TravelDestination.jsx'
-// import TravelOrigin from './components/TravelOrigin.jsx'
+import TravelDestination from './components/TravelDestination.jsx';
+import TravelOrigin from './components/TravelOrigin.jsx';
 
 class Main extends React.Component {
   constructor(props){
@@ -16,9 +16,9 @@ class Main extends React.Component {
   render() {
     let view;
     if(this.state.toggle === true) {
-      view = "hello";
+      view = <TravelOrigin random={this.random.bind(this)} />;
     } else {
-      view = "goodbye";
+      view = <TravelDestination />;
     }
 
     return (
