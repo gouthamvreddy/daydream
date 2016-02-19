@@ -9,7 +9,8 @@ class TravelDestination extends React.Component {
     return (
       <div>
         <h1>Travel Destination</h1>
-        <button onClick={this.props.controllers.changeView.bind(this, 'TravelOrigin')}>View TravelOrigin</button>
+        <h2>Departure City: {this.props.actions.getDepartureCity()}</h2>
+        <button onClick={this.props.actions.setActiveComponent.bind(this, 'TravelOrigin')}>View TravelOrigin</button>
       </div>
     );
   }
