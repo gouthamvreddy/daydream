@@ -8,24 +8,35 @@ import TravelOrigin from './components/TravelOrigin.jsx';
 class Main extends React.Component {
   constructor(props){
     super(props);
-    this.state = {toggle: true};
-  }
-  random() {
-    this.setState({toggle: !this.state.toggle});
+    this.state = {
+      activeComponent: 'TravelOrigin'
+    };
   }
   render() {
-    let view;
-    if(this.state.toggle === true) {
-      view = <TravelOrigin random={this.random.bind(this)} />;
-    } else {
-      view = <TravelDestination />;
+    const controllers = {
+      changeView: (componentName) => {
+        this.setState({activeComponent: componentName});
+      }
+    }
+
+    // Handle Routing
+    const router = {view: ''};
+    switch (this.state.activeComponent) {
+      case 'TravelOrigin':
+        router.view = <TravelOrigin controllers={controllers} />;
+        break;
+      case 'TravelDestination':
+        router.view = <TravelDestination controllers={controllers} />;
+        break;
+      default:
+        router.view = <TravelOrigin controllers={controllers} />;
     }
 
     return (
       <div>
         <div>Hello World!</div>
-        <button onClick={this.random.bind(this)}>Click</button>
-        {view}
+        <button onClick={controllers.changeView.bind(this, 'TravelOrigin')}>Home</button>
+        {router.view}
       </div>
     )
   }

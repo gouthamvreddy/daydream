@@ -9,6 +9,7 @@ class TravelDestination extends React.Component {
     return (
       <div>
         <h1>Travel Destination</h1>
+        <button onClick={this.props.controllers.changeView.bind(this, 'TravelOrigin')}>View TravelOrigin</button>
       </div>
     );
   }

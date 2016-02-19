@@ -9,7 +9,7 @@ class TravelOrigin extends React.Component {
     return (
       <div>
         <h1>Travel Origin</h1>
-        <button onClick={this.props.random}>View TravelDestination</button>
+        <button onClick={this.props.controllers.changeView.bind(this, 'TravelDestination')}>View TravelDestination</button>
       </div>
     );
   }
