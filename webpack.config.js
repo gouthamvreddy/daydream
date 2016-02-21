@@ -13,6 +13,6 @@ module.exports = {
     filename: "bundle.js"
   },
   module: {
-    loaders: [{test: /\.jsx$/, exclude: /node_modules/, loader: "babel-loader"}]
+    loaders: [{test: /\.js/, exclude: /node_modules/, loader: "babel-loader"}]
   }
 }
