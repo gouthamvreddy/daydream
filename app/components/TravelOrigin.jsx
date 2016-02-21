@@ -33,6 +33,7 @@ class TravelOrigin extends React.Component {
           <input type="submit" value="Show Random Destination" />
           <DateRange
             calendars="1"
+            init={this.state.setTravelDates}
             onChange={this.state.setTravelDates}
             width="100%"
             />
