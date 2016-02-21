@@ -18,17 +18,22 @@ app.get('/api/suggestions_and_resolutions/:query', function(req, response, next)
   .query({query: req.params.query})
   .query({apikey: API_KEY})
   .end(function(err, res){
-    response.json(res.body.sr[0]);
+    if (res.body.sr[0])
+      response.json(res.body.sr[0]);
+    else
+      response.json({err: 'Server Error'});
     next();
   });
 });
 
 // Search flights API
-app.get('/api/flight_search/:query', function(req, response, next) {
-  request.get('http://terminal2.expedia.com:80/x/mflights/search?')
-    .query(req.params.query)
+app.get('/api/flight_search/', function(req, response, next) {
+  request.get('http://terminal2.expedia.com:80/x/mflights/search')
+    .query(req.url.slice(20))
     .query({apikey: API_KEY})
     .end(function(err, res) {
+      console.log(req.params);
+      console.log(req.url.slice(20));
       console.log(res.body);
       response.json(res.body);
       next();
