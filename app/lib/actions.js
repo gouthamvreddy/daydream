@@ -2,6 +2,12 @@
 
 let actions = (MainComponent) => {
   return {
+    setAppState: (obj) => {
+      MainComponent.setState(obj);
+    },
+    getAppState: (obj) => {
+      return MainComponent.state;
+    },
     setActiveComponent: (componentName) => {
       MainComponent.setState({activeComponent: componentName});
     },
@@ -13,6 +19,9 @@ let actions = (MainComponent) => {
     },
     getDepartureCity: () => {
       return MainComponent.state.departureCity;
+    },
+    departureCityIsClarified: (bool) => {
+      MainComponent.setState({departureCityIsClarified: bool})
     },
     setDepartureAirport: (da) => {
       MainComponent.setState({departureAirport: da});
@@ -31,6 +40,9 @@ let actions = (MainComponent) => {
     },
     getDestinationCity: () => {
       return MainComponent.state.destinationCity;
+    },
+    setDestinationAirport: (da) => {
+      MainComponent.setState({destinationAirport: da})
     },
     getDestinationAirport: () => {
       return MainComponent.state.destinationAirport;
@@ -55,6 +67,12 @@ let actions = (MainComponent) => {
         destinationImgAlt: destinationObj["imgDescription"],
         destinationInfo: destinationObj["cityDescription"]
       });
+    },
+    setFlightPrice: (fp) => {
+      MainComponent.setState({flightPrice: fp})
+    },
+    getFlightPrice: () => {
+      return MainComponent.state.flightPrice;
     }
   }
 }
