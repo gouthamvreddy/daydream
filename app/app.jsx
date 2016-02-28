@@ -20,7 +20,13 @@ class Main extends React.Component {
     // Handle Routing
     const route = {};
     // Instantiate ROUTER with actions and route object
-    ROUTER(this, actions, route);
+    ROUTER(this, actions, route, this.state);
+
+    let handleStartOver = () => {
+      actions.setActiveComponent(this, 'TravelOrigin');
+      actions.departureCityIsClarified(false);
+      actions.setDestinationCity('Destination City')
+    }
 
     // Render the App
     return (
@@ -29,7 +35,7 @@ class Main extends React.Component {
         {/* Below, unless we are on the starting page,
            we show a "start over" button.  */}
         {this.state.activeComponent !== 'TravelOrigin' ?
-          (<button onClick={actions.setActiveComponent.bind(this, 'TravelOrigin')}>Start Over</button>) : null}
+          (<button onClick={handleStartOver}>Start Over</button>) : null}
         {route.view}
       </div>
     )
