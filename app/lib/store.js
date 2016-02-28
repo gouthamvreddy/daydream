@@ -3,6 +3,7 @@ import destinationDataArray from '../lib/destinationData.js';
 const appDataStore = {
   activeComponent: 'TravelOrigin',
   departureCity: 'Departure City',
+  departureCityIsClarified: false,
   departureAirport: 'SEA',
   departureDate: (new Date()).toISOString().split('T')[0], //Default to today
   destinationCity: 'Destination City',
@@ -14,7 +15,7 @@ const appDataStore = {
   returnDate: (new Date()).toISOString().split('T')[0], //Default to today
   dateRangeObj: {},
   flightRequest: {},
-  flightPrice: '',
+  flightPrice: ''
 }
 
 export default appDataStore
