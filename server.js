@@ -18,7 +18,7 @@ app.get('/api/suggestions_and_resolutions/:query', function(req, response, next)
   .query({query: req.params.query})
   .query({apikey: API_KEY})
   .end(function(err, res){
-    if (res.body.sr[0])
+    if (res.body && res.body.sr && res.body.sr[0])
       response.json(res.body.sr[0]);
     else
       response.json({err: 'Server Error'});
